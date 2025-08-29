@@ -1,0 +1,45 @@
+[
+  {
+    "id": "v1",
+    "title": "Campus Walkthrough \u2014 vertical",
+    "url": "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    "author": "demo",
+    "likes": 22,
+    "comments": [
+      {
+        "author": "hamza",
+        "text": "first look at our campus!"
+      },
+      {
+        "author": "hamza",
+        "text": "rate it 10/10 \ud83d\udd25"
+      }
+    ]
+  },
+  {
+    "id": "v2",
+    "title": "Big Buck Bunny \u2014 short clip",
+    "url": "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
+    "author": "demo",
+    "likes": 18,
+    "comments": [
+      {
+        "author": "hamza",
+        "text": "testing the player with a classic demo"
+      }
+    ]
+  },
+  {
+    "id": "v3",
+    "title": "Sample 10s \u2014 test",
+    "url": "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+    "author": "demo",
+    "likes": 7,
+    "comments": [
+      {
+        "author": "hamza",
+        "text": "smooth playback on mobile too"
+      }
+    ]
+  }
+]

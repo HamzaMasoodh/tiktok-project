@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hamza TikTok Project — Auth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="config.js"></script>
+  <script defer src="auth.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="Hamza TikTok Project logo" />
+      <h1>Hamza TikTok</h1>
+    </div>
+    <div class="actions">
+      <div class="userbox">
+        <span id="userDisplay" class="muted">Not signed in</span>
+        <button id="btnSignIn" class="btn">Sign In</button>
+        <button id="btnSignOut" class="btn danger" style="display:none;">Sign Out</button>
+      </div>
+      <button id="btnUpload" class="btn primary">Upload</button>
+      <button id="btnConnect" class="btn">Connect Azure</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Create • Share • Scroll</h2>
+      <p>Sign in to upload and comment. Optional Azure Blob uploads supported via SAS.</p>
+      <div class="stats">
+        <div><strong id="statVideos">0</strong><span>videos</span></div>
+        <div><strong id="statLikes">0</strong><span>likes</span></div>
+        <div><strong id="statComments">0</strong><span>comments</span></div>
+      </div>
+    </section>
+
+    <section class="feed" id="feed"></section>
+  </main>
+
+  <nav class="bottomnav">
+    <button class="tab active" data-tab="feed">Feed</button>
+    <button class="tab" data-tab="upload">Upload</button>
+    <button class="tab" data-tab="about">About</button>
+  </nav>
+
+  <!-- Video Viewer Modal -->
+  <dialog id="viewer" class="modal">
+    <div class="viewer-container">
+      <video id="viewerVideo" playsinline controls></video>
+      <div class="viewer-meta">
+        <h3 id="viewerTitle">Title</h3>
+        <p class="meta"><span id="viewerAuthor"></span> • <span id="viewerDuration"></span></p>
+        <div class="viewer-actions">
+          <button id="likeBtn" class="btn small">❤ Like <span id="likeCount"></span></button>
+          <button id="copyLinkBtn" class="btn small">Copy Link</button>
+        </div>
+        <div class="comments">
+          <h4>Comments</h4>
+          <ul id="commentList"></ul>
+          <form id="commentForm">
+            <input type="text" id="commentInput" placeholder="Add a comment…" maxlength="140" required/>
+            <button class="btn small" type="submit">Post</button>
+          </form>
+          <p id="commentHint" class="hint"></p>
+        </div>
+      </div>
+    </div>
+    <form method="dialog" class="modal-close">
+      <button class="btn">Close</button>
+    </form>
+  </dialog>
+
+  <!-- Upload Modal -->
+  <dialog id="uploader" class="modal">
+    <form id="uploadForm" class="upload-form" method="dialog">
+      <h3>Upload a Video</h3>
+      <label class="file">
+        <input type="file" id="videoFile" accept="video/*" required />
+      </label>
+      <input type="text" id="videoTitle" placeholder="Title (e.g., My campus tour)" maxlength="80" required />
+      <video id="preview" muted playsinline></video>
+      <div class="row">
+        <button id="startUpload" class="btn primary" type="submit">Upload</button>
+        <button class="btn" value="cancel">Cancel</button>
+      </div>
+      <p class="hint">Tip: To upload to Azure Blob, connect SAS first via “Connect Azure”.</p>
+      <div id="uploadStatus" class="status"></div>
+    </form>
+  </dialog>
+
+  <!-- Connect Azure Modal -->
+  <dialog id="connectAzure" class="modal">
+    <form id="connectForm" class="connect-form" method="dialog">
+      <h3>Connect Azure Storage (SAS)</h3>
+      <p>Paste your container SAS URL (format: https://ACCOUNT.blob.core.windows.net/CONTAINER?SAS…)</p>
+      <input type="url" id="sasUrl" placeholder="https://example.blob.core.windows.net/videos?sv=...&ss=..." required />
+      <div class="row">
+        <button class="btn primary" type="submit">Save</button>
+        <button class="btn" value="cancel">Cancel</button>
+      </div>
+      <p class="hint">Ensure CORS allows your origin and methods: GET, PUT. Allow headers: x-ms-*, Content-Type.</p>
+    </form>
+  </dialog>
+
+  <!-- Sign In Modal -->
+  <dialog id="signin" class="modal">
+    <form id="signInForm" class="signin-form" method="dialog">
+      <h3>Sign In</h3>
+      <p class="hint">Demo auth: pick any username (e.g., <b>hamza</b>). Password optional.</p>
+      <input type="text" id="username" placeholder="Username" maxlength="30" required />
+      <input type="password" id="password" placeholder="Password (optional)" />
+      <div class="row">
+        <button class="btn primary" type="submit">Sign In</button>
+        <button class="btn" value="cancel">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
